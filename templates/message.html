@@ -1,0 +1,47 @@
+{{ define "message" }}
+{{/**/}} {{ if eq .user .message.User }}
+{{/**/}} {{/**/}} {{ template "message-self" .message }}
+{{/**/}} {{ else }}
+{{/**/}} {{/**/}} {{ template "message-other" .message }}
+{{/**/}} {{ end }}
+{{ end }}
+
+{{ define "message-self" }}
+<div class="flow-root pl-10 pr-6">
+    <div class="mt-4 pb-4 p-2 w-max max-w-full bg-blue-700 flex min-w-5  float-right  rounded-l-md rounded-b-md">
+        {{ template "msg-paragraph" . }}
+    </div>
+</div>
+{{ end }}
+
+{{ define "message-other" }}
+<div class="flow-root pl-6 pr-10">
+    <div class="mt-4 pb-4 p-2 w-max max-w-full bg-gray-700 flex min-w-5 rounded-r-md rounded-b-md">
+        {{ template "msg-paragraph" . }}
+    </div>
+</div>
+{{ end }}
+
+{{ define "msg-paragraph" }}
+<div class="relative w-full">
+    <p class="break-words text-gray-200 pr-14">{{.Text}}</p>
+    <sub class="text-xs absolute right-0 -bottom-3 text-gray-200">{{timeString .Date}}</sub>
+</div>
+{{ end }}
+
+{{ define "message-self-stream" }}
+<turbo-stream action="append" target="messages">
+    <template>
+        {{ template "message-self" . }}
+    </template>
+</turbo-stream>
+{{ end }}
+
+
+{{ define "message-other-stream" }}
+<turbo-stream action="append" target="messages">
+    <template>
+        {{ template "message-other" . }}
+    </template>
+</turbo-stream>
+{{ end }}

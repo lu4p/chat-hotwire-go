@@ -1,10 +1,38 @@
-{{ template "head" . }}
+{{ template "base.html" . }}
 
-{{ link "/foo" "Foo"}}
-{{ link "/bar" "Bar"}}
+{{ define "main" }}
+{{$user := .user}}
+<div class="h-screen">
+    <div class="overflow-auto h-5/6" id="messages">
+        <div>
+            {{ range .messages }}
+            {{ if eq $user .User }}
+            {{ template "message-self" . }}
+            {{ else }}
+            {{ template "message-other" . }}
+            {{ end }}
 
-<p class="bg-gray-100">{{.test}}</p>
-<p>{{toString .slice }}</p>
+            {{ end }}
+        </div>
+    </div>
+    <div class="mt-4 mb-2 mx-2">
+        <turbo-frame id="new_message">
+            <form data-controller="form" data-action="turbo:submit-end->form#reset" action="/send" method="post"
+                class="flex">
+                <input type="hidden" name="csrf" value="{{.csrf}}">
 
 
-{{ template "foot" }}
+                <input class="rounded-l-full p-2 text-gray-200 bg-gray-700 mr-0 w-full" autofocus name="message"
+                    placeholder="Message" required />
+                <button class="rounded-r-full p-2 bg-indigo-500 ml-0" type="submit">
+                    <svg class="h-6 w-6 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </form>
+        </turbo-frame>
+    </div>
+</div>
+{{ end }}

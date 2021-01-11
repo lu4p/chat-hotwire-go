@@ -9,4 +9,9 @@
     h2 {
         @apply text-xl;
     }
+
+    #messages {
+        scrollbar-color: hsla(0,0%,100%,.16) transparent;
+        scrollbar-width: thin;
+    }
 }
