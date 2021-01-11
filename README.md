@@ -5,7 +5,7 @@ This is a simple chat app which shows how to use Go with [Hotwire](https://hotwi
 
 - Messages from another user are received via [Turbo Streams](https://turbo.hotwire.dev/reference/streams) over a websocket connection.
 - A [stimulus](https://stimulus.hotwire.dev/) controller is used to clear the message form.
-- The application can work without JavaScript, although 
+- The application can work without JavaScript 
 
 ## Setup
 You need to have [go](https://golang.org/dl/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
