@@ -1,4 +1,4 @@
-module github.com/lu4p/chat-turbo-go
+module github.com/lu4p/chat-hotwire-go
 
 go 1.15
 

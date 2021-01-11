@@ -1,7 +1,7 @@
 import './style.css'
 
 // Turbo
-const Turbo = require("@hotwired/turbo")
+import * as Turbo from "@hotwired/turbo"
 Turbo.connectStreamSource(new WebSocket("ws://" + document.location.host + "/recieve"));
 
 

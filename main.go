@@ -114,7 +114,6 @@ func root(c echo.Context) error {
 	sess, _ := session.Get("session", c)
 
 	sess.Options = &sessions.Options{
-		Secure:   true,
 		Path:     "/",
 		MaxAge:   86400 * 7,
 		HttpOnly: true,
