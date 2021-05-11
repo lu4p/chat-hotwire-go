@@ -209,11 +209,11 @@ func csrfToken(c echo.Context) string {
 
 func isTurbo(c echo.Context) bool {
 	accept := c.Request().Header.Get("Accept")
-	if !strings.Contains(accept, "turbo-stream") {
+	if !strings.Contains(accept, "text/vnd.turbo-stream.html") {
 		return false
 	}
 
-	c.Response().Header().Set("Content-Type", "text/html; turbo-stream; charset=utf-8")
+	c.Response().Header().Set("Content-Type", "text/vnd.turbo-stream.html")
 
 	return true
 }
